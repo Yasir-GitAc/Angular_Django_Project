@@ -1,0 +1,21 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+
+# Python
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*/*/__pycache__/
+backend/*/*/*/__pycache__/
+.env
+.venv
+.env/
+.venv/
+venv/
+db.sqlite3
+
+#angular
+node_modules

@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+**/.git
+
+# Docker
+.docker
+
+# Python
+__pycache__/
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*/*/__pycache__/
+backend/*/*/*/__pycache__/
+.env/
+**/.env
+.venv/
+venv/
+db.sqlite3
+
+**/README.md
+**/LICENSE
+**/.vscode
+**/coverage
+**/.aws
