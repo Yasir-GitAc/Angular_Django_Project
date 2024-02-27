@@ -1,0 +1,4 @@
+navbar h-16, z-50
+ hover:bg-slate-200
+
+sidebar z-49, pt-16

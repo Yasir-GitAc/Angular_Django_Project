@@ -1,0 +1,41 @@
+User Model:
+Fields: username, email, password, first_name,
+last_name, date_joined, last_login,
+
+Product Model:
+Fields: name, description, price, quantity_available, image,
+categories (ManyToManyField with Category model),
+average_rating (to store the average rating of the product),
+total_ratings (to store the total number of ratings)
+
+Category Model:
+Fields: name, description,
+parent_category (ForeignKey to self for hierarchical categories)
+
+Cart Model:
+Fields: user (ForeignKey to User model),
+products (ManyToManyField with Product model through a CartItem model),
+total_price, created_at, updated_at
+
+CartItem Model:
+Fields: cart (ForeignKey to Cart model),
+product (ForeignKey to Product model),
+quantity, price (to store the price of the product at the time of adding to cart)
+
+Order Model:
+Fields: user (ForeignKey to User model),
+items (ManyToManyField with Product model through OrderItem model),
+total_price, created_at
+
+OrderItem Model:
+Fields: order (ForeignKey to Order model),
+product (ForeignKey to Product model),
+quantity,
+price_at_order (to store the price of the product at the time of ordering)
+
+Review Model:
+Fields: user (ForeignKey to User model),
+product (ForeignKey to Product model),
+rating (IntegerField with choices ranging from 1 to 5),
+review_text, created_at
+

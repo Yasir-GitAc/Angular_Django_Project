@@ -1,2 +1,34 @@
-<h1>Title- running with nginx</h1>
+<app-header></app-header>
+
+<h1 class="mt-16">Checking if user is creation functionality</h1>
 <p>{{ title }}</p>
+
+<h1 class="text-3xl font-bold underline">Hello world!</h1>
+
+<div class="bg-slate-400 m-5 p-4 text-center text-white font-sans">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="w-full">
+    <label for="email">Email</label>
+    <input type="email" ngModel name="email" required email #email="ngModel" />
+    <span *ngIf="!email.valid && email.touched">Email not valid</span>
+    <br />
+    <br />
+    <label for="name">Name</label>
+    <input type="text" ngModel name="name" #name="ngModel" required />
+    <br />
+    <br />
+    <label for="address">Address</label>
+    <input type="text" ngModel name="address" />
+    <br />
+    <br />
+    <label for="password">password</label>
+    <input type="text" ngModel name="password" />
+    <br />
+    <button
+      type="submit"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      [disabled]="!f.valid"
+    >
+      Sign Up
+    </button>
+  </form>
+</div>

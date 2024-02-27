@@ -1,0 +1,15 @@
+/* button {
+  border: 1px solid red;
+  background-color: black;
+  color: wheat;
+  padding: 10px;
+  border-radius: 2px;
+}
+button:disabled {
+  background-color: white;
+  color: black;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+} */

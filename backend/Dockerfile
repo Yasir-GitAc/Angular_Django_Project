@@ -22,7 +22,9 @@ RUN pip install -r /tmp/requirements.txt && \
         django-user
 
 
-# to run this gunicorn command i removed command of runserver from compose file... this is the cmd "    command: sh -c "python manage.py runserver 0.0.0.0:8000""
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "shop_backend.wsgi:application"]
+# to run this gunicorn command i removed command of runserver from compose file... this is the cmd "
+#command: sh -c "python manage.py runserver 0.0.0.0:8000""
+#gunicorn cmd updated...
+CMD ["gunicorn", "--config", "gunicorn_config.py", "shop_backend.wsgi:application"]
 
 USER django-user

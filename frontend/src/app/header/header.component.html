@@ -1,0 +1,61 @@
+<div
+  class="bg-white z-50 w-full h-16 p-4 pl-8 pr-8 flex items-center justify-between shadow fixed top-0"
+>
+  <a class="text-black font-sans font-bold text-2xl">SimpleStore</a>
+  <div class="flex items-center justify-between gap-1">
+    <i
+      class="fa-solid fa-cart-shopping text-black p-2 text-lg hover:bg-slate-200 hover:rounded"
+      role="button"
+    ></i>
+    <i
+      class="fa-solid fa-user text-black p-2 text-xl hover:bg-slate-200 hover:rounded"
+      role="button"
+    ></i>
+    <i
+      class="fa-solid fa-bars text-black p-2 text-xl hover:bg-slate-200 hover:rounded"
+      role="button"
+      (click)="toggleSidebar()"
+    ></i>
+  </div>
+</div>
+<aside
+  *ngIf="show_sidebar"
+  class="z-49 p-4 pt-16 absolute flex items-start justify-start overflow-hidden w-screen h-96 lg:w-52 lg:h-screen top-0 right-0 shadow bg-white border-l-2 transition duration-100 ease-in-out"
+>
+  <nav class="flex flex-col gap-3 w-full pt-4">
+    <a class="block px-4 py-2 text-base text-black hover:bg-slate-200">Home</a>
+    <div class="relative" #categoryDropdown>
+      <button
+        (click)="toggleDropdown($event)"
+        class="flex items-center gap-1 w-full px-4 py-2 text-base text-black hover:bg-slate-200"
+      >
+        Category
+        <i *ngIf="!isDropdownOpen" class="fa-solid fa-angle-down pt-1"></i>
+        <i *ngIf="isDropdownOpen" class="fa-solid fa-angle-up pt-1"></i>
+      </button>
+      <div class="right-0 mt-2 w-48 bg-white shadow-lg" *ngIf="isDropdownOpen">
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-200"
+          >Gents Ware</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-200"
+          >Female collection</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-200"
+          >Beauty Products</a
+        >
+      </div>
+    </div>
+    <a class="block px-4 py-2 text-base text-black hover:bg-slate-200"
+      >BestSells</a
+    >
+    <a class="block px-4 py-2 text-base text-black hover:bg-slate-200"
+      >New Arrival</a
+    >
+  </nav>
+</aside>
