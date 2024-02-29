@@ -14,6 +14,14 @@ import { HeaderComponent } from './header/header.component';
 })
 export class AppComponent implements OnInit{
   title = 'frontend - Angular';
+  userData = {
+    email: '',
+    name: '',
+    profilePicture: null,
+    address: '',
+    password: ''
+  };
+  formData = new FormData()
 
   constructor(private http:HttpClient){}
 
@@ -22,19 +30,24 @@ export class AppComponent implements OnInit{
   }
 
   onSubmit(form: NgForm){
-    console.log('from onsubmit')
-    console.log(form)
-    console.log(form.value)
+
 
     const name = form.value.name
-    console.log('name', name)
+    this.formData.append('email', form.value.email)
+    this.formData.append('name', form.value.name)
+    this.formData.append('address', form.value.address);
+    this.formData.append('password', form.value.password);
 
-    // this.http.post('http://127.0.0.1:8000/api/user/create/',
-    this.http.post('http://127.0.0.1:8000/api/user/token/',
-    { email: form.value.email,
-      password: form.value.password
-    }).subscribe(res => console.log(res))
+    // this.http.post('http://127.0.0.1:8000/api/user/token/',
+    this.http.post('http://127.0.0.1:8000/api/user/create/', this.formData).subscribe(res => console.log(res))
 
     // form.reset()
+  }
+
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formData.append('profile_image', file);
+    }
   }
 }

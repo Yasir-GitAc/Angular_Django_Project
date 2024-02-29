@@ -36,11 +36,16 @@ class UserManager(BaseUserManager):
         return user
 
 
+# to handle image upload
+def upload_to(instance, filename):
+    return "profile_images/{filename}".format(filename=filename)
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     profile_image = models.ImageField(
-        upload_to="profile_images",
+        upload_to=upload_to,
         default="profile_images/user-default.png",
         null=True,
         blank=True,

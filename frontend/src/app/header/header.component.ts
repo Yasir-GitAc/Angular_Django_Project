@@ -16,7 +16,6 @@ export class HeaderComponent {
   constructor(){}
 
   toggleSidebar(){
-    console.log('clicked')
     this.show_sidebar = !this.show_sidebar;
     console.log(this.show_sidebar)
 
@@ -24,7 +23,6 @@ export class HeaderComponent {
 
   toggleDropdown(event: Event) {
     this.isDropdownOpen = !this.isDropdownOpen;
-    console.log('clicked')
     event.stopPropagation();
   }
 

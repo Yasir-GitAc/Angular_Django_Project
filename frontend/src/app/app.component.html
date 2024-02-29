@@ -5,30 +5,89 @@
 
 <h1 class="text-3xl font-bold underline">Hello world!</h1>
 
-<div class="bg-slate-400 m-5 p-4 text-center text-white font-sans">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="w-full">
-    <label for="email">Email</label>
-    <input type="email" ngModel name="email" required email #email="ngModel" />
-    <span *ngIf="!email.valid && email.touched">Email not valid</span>
-    <br />
-    <br />
-    <label for="name">Name</label>
-    <input type="text" ngModel name="name" #name="ngModel" required />
-    <br />
-    <br />
-    <label for="address">Address</label>
-    <input type="text" ngModel name="address" />
-    <br />
-    <br />
-    <label for="password">password</label>
-    <input type="text" ngModel name="password" />
-    <br />
+<div
+  class="border-2 shadow bg-slate-200 m-5 p-4 text-center text-black font-sans"
+>
+  <form
+    (ngSubmit)="onSubmit(userForm)"
+    #userForm="ngForm"
+    class="max-w-md mx-auto"
+    enctype="multipart/form-data"
+  >
+    <div class="mb-4">
+      <label for="email" class="block text-gray-700 text-sm font-bold mb-2"
+        >Email:</label
+      >
+      <input
+        type="email"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="email"
+        ngModel
+        name="email"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="name" class="block text-gray-700 text-sm font-bold mb-2"
+        >Name:</label
+      >
+      <input
+        type="text"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="name"
+        ngModel
+        name="name"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label
+        for="profilePicture"
+        class="block text-gray-700 text-sm font-bold mb-2"
+        >Profile Picture:</label
+      >
+      <input
+        type="file"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="profilePicture"
+        name="profilePicture"
+        (change)="onFileSelected($event)"
+        ngModel
+        accept="image/*"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="address" class="block text-gray-700 text-sm font-bold mb-2"
+        >Address:</label
+      >
+      <textarea
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="address"
+        name="address"
+        ngModel
+        rows="3"
+        required
+      ></textarea>
+    </div>
+    <div class="mb-4">
+      <label for="password" class="block text-gray-700 text-sm font-bold mb-2"
+        >Password:</label
+      >
+      <input
+        type="password"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="password"
+        ngModel
+        name="password"
+        required
+      />
+    </div>
     <button
       type="submit"
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      [disabled]="!f.valid"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      [disabled]="!userForm.valid"
     >
-      Sign Up
+      Submit
     </button>
   </form>
 </div>
