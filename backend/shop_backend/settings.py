@@ -28,15 +28,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = (os.environ.get("SECRET_KEY"))
 
-SECRET_KEY = env("SECRET_KEY")
+# SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = env.bool("DEBUG", default=False)
+# DEBUG = env.bool("DEBUG", default=False)
 
 # cmd thake local chalanor jonno ----- remove before final
-# SECRET_KEY = "django-insecure-jbqhlp$$o2+vwd+cb(82(n0#wvypcrx5ful@6s9fj+&z=(@b8#p"
-# DEBUG = True
+SECRET_KEY = "django-insecure-jbqhlp$$o2+vwd+cb(82(n0#wvypcrx5ful@6s9fj+&z=(@b8#p"
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "http://127.0.0.1:8000/",
@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # Local
     "account.apps.AccountConfig",
+    "product.apps.ProductConfig",
 ]
 
 REST_FRAMEWORK = {
@@ -110,16 +111,16 @@ WSGI_APPLICATION = "shop_backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": env("DB_HOST"),
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASS"),
-        "PORT": 5432,
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "HOST": env("DB_HOST"),
+#         "NAME": env("DB_NAME"),
+#         "USER": env("DB_USER"),
+#         "PASSWORD": env("DB_PASS"),
+#         "PORT": 5432,
+#     }
+# }
 
 # DATABASES = {
 #     "default": {
@@ -132,12 +133,12 @@ DATABASES = {
 #     }
 # }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -187,20 +188,22 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = (
-    "http://Localhost:4200",
-    "http://Localhost",
-    "http://Localhost:8000",
-    "http://localhost:4200",
-    # "http://127.0.0.1/",
-)
+# CORS_ALLOWED_ORIGINS = (
+#     "http://Localhost:4200",
+#     "http://Localhost",
+#     "http://Localhost:8000",
+#     "http://localhost:4200",
+#     # "http://127.0.0.1/",
+# )
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://Localhost",
-    "http://Localhost:4200",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "http://Localhost",
+#     "http://Localhost:4200",
+# ]
+CSRF_TRUSTED_ORIGINS = ["http://*"]
 
-# CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Angular Django Project",
