@@ -1,0 +1,103 @@
+<p class="mt-16">works</p>
+
+<form
+  (ngSubmit)="submit()"
+  [formGroup]="Form"
+  novalidate
+  class="max-w-lg mx-auto mt-8"
+>
+  <p class="mb-4">
+    <label for="name" class="block">Name:</label>
+    <input
+      type="text"
+      formControlName="name"
+      class="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+    />
+  </p>
+  <p class="mb-4">
+    <label for="detail" class="block">Detail:</label>
+    <textarea
+      type="text"
+      formControlName="detail"
+      class="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+    ></textarea>
+  </p>
+
+  <p class="mb-4">
+    <label for="upload_images" class="block">Product Image:</label>
+    <input
+      type="file"
+      formControlName="upload_images"
+      (change)="onFileSelected($event)"
+      class="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+      multiple
+    />
+  </p>
+
+  <p class="mb-4">
+    <label for="category" class="block">Category:</label>
+    <select
+      name="category"
+      formControlName="category"
+      class="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+      multiple
+    >
+      <option *ngFor="let category of categories" [ngValue]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+  </p>
+
+  <div formArrayName="sizes" class="mb-4">
+    <p class="mb-2">Sizes</p>
+    <div
+      *ngFor="let size of getSizeControls(); let i = index"
+      class="flex items-center mb-2"
+    >
+      <input
+        type="number"
+        [formControlName]="i"
+        class="border rounded px-3 py-2 mr-2 w-1/2 focus:outline-none focus:border-blue-500"
+      />
+      <button
+        type="button"
+        (click)="onDeleteSize(i)"
+        class="border rounded px-3 py-2"
+      >
+        Delete
+      </button>
+    </div>
+    <button
+      type="button"
+      (click)="onAddSize()"
+      class="border rounded px-3 py-2"
+    >
+      Add Size
+    </button>
+  </div>
+
+  <p class="mb-4">
+    <label for="price" class="block">Price:</label>
+    <input
+      type="number"
+      formControlName="price"
+      class="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+    />
+  </p>
+
+  <p class="mb-4">
+    <label for="discount" class="block">Discount:</label>
+    <input
+      type="number"
+      formControlName="discount"
+      class="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+    />
+  </p>
+
+  <button
+    class="border border-black rounded px-4 py-2 bg-blue-500 text-white disabled:opacity-50 disabled:pointer-events-none"
+    [disabled]="Form.invalid"
+  >
+    Signup
+  </button>
+</form>

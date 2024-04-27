@@ -1,8 +1,13 @@
 <div
   class="bg-white z-50 w-full h-16 p-4 pl-8 pr-8 flex items-center justify-between shadow fixed top-0"
 >
-  <a class="text-black font-sans font-bold text-2xl">SimpleStore</a>
+  <a
+    class="text-black font-sans font-bold text-2xl cursor-pointer"
+    routerLink="/"
+    >SimpleStore</a
+  >
   <div class="flex items-center justify-between gap-1">
+    <p *ngIf="userName">user:{{ userName }}</p>
     <i
       class="fa-solid fa-cart-shopping text-black p-2 text-lg hover:bg-slate-200 hover:rounded"
       role="button"
@@ -10,6 +15,11 @@
     <i
       class="fa-solid fa-user text-black p-2 text-xl hover:bg-slate-200 hover:rounded"
       role="button"
+    ></i>
+    <i
+      class="fa-solid fa-arrow-right-to-bracket text-black p-2 text-xl hover:bg-slate-200 hover:rounded"
+      role="button"
+      [routerLink]="['authentication']"
     ></i>
     <i
       class="fa-solid fa-bars text-black p-2 text-xl hover:bg-slate-200 hover:rounded"
@@ -24,6 +34,9 @@
 >
   <nav class="flex flex-col gap-3 w-full pt-4">
     <a class="block px-4 py-2 text-base text-black hover:bg-slate-200">Home</a>
+    <a class="block px-4 py-2 text-base text-black hover:bg-slate-200"
+      >This user is auth.. {{ isAuthenticated }}</a
+    >
     <div class="relative" #categoryDropdown>
       <button
         (click)="toggleDropdown($event)"
@@ -56,6 +69,12 @@
     >
     <a class="block px-4 py-2 text-base text-black hover:bg-slate-200"
       >New Arrival</a
+    >
+    <a
+      *ngIf="isAuthenticated"
+      class="block px-4 py-2 text-base text-black hover:bg-slate-200"
+      (click)="logoutUser()"
+      >Logout</a
     >
   </nav>
 </aside>

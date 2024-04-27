@@ -1,0 +1,154 @@
+<div class="mt-16 flex items-center justify-center">
+  <!-- <p>auth works!</p> -->
+  <div
+    class="bg-white border border-gray-300 w-[80%] lg:w-[40vw] mt-4 shadow-lg p-4"
+  >
+    <p>{{ signUpMode }}</p>
+    <form
+      *ngIf="signUpMode"
+      class="flex flex-col items-center justify-center gap-4"
+      [formGroup]="signUpForm"
+      (ngSubmit)="signUpFormSubmit()"
+    >
+      <div class="flex flex-col w-full">
+        <label for="email" class="text-base">Email:</label>
+        <input
+          class="border border-gray-300 p-2 rounded-xl"
+          type="email"
+          formControlName="Email"
+          name="email"
+          placeholder="email@example.com"
+        />
+        <span
+          *ngIf="
+            !signUpForm.get('Email')?.valid && signUpForm.get('Email')?.touched
+          "
+          class="text-sm"
+          >Please give a valid email..</span
+        >
+      </div>
+      <div class="flex flex-col w-full">
+        <label for="name" class="text-base">Name:</label>
+        <input
+          class="border border-gray-300 p-2 rounded-xl"
+          type="text"
+          name="name"
+          placeholder="John Doe, or john555"
+          formControlName="Name"
+        />
+      </div>
+      <div class="flex flex-col w-full">
+        <label for="address" class="text-base">Address:</label>
+        <input
+          class="border border-gray-300 p-2 rounded-xl"
+          type="text"
+          name="address"
+          placeholder="where you want your product to be delivered"
+          formControlName="Address"
+        />
+      </div>
+      <div class="flex flex-col w-full">
+        <label for="address" class="text-base">Profile image:</label>
+        <input
+          class="border border-gray-300 p-2 rounded-xl"
+          type="file"
+          formControlName="ProfileImage"
+          (change)="onFileSelected($event)"
+          name="ProfileImage"
+        />
+      </div>
+      <div class="flex flex-col w-full">
+        <label for="password" class="text-base">Password:</label>
+        <input
+          class="border border-gray-300 p-2 rounded-xl"
+          type="password"
+          name="password"
+          placeholder="password"
+          formControlName="Password"
+        />
+      </div>
+      <div class="flex flex-col w-full">
+        <label for="email" class="text-base">Confirm Password:</label>
+        <input
+          class="border border-gray-300 p-2 rounded-xl"
+          type="password"
+          name="confirm_password"
+          placeholder="Confirm password"
+          formControlName="ConfirmPassword"
+        />
+        <span *ngIf="signUpForm.errors?.['passwordmatcherror']">
+          <p class="text-base">Passwords did not mathed</p>
+        </span>
+      </div>
+      <div>
+        <button
+          class="p-2 border-2 rounded-xl bg-black text-white hover:bg-slate-800 focus:bg-slate-800 disabled:bg-slate-800 cursor-pointer"
+          type="submit"
+          [disabled]="!signUpForm.valid"
+        >
+          Sign Up
+        </button>
+      </div>
+      <div>
+        <p class="text-sm">
+          Already signed up?
+          <a class="underline cursor-pointer" (click)="switchMode()">Login</a>
+        </p>
+      </div>
+    </form>
+    <!----------------------------------------->
+    <!----------------------------------------->
+    <!---------------- Login form ------------->
+    <form
+      *ngIf="!signUpMode"
+      class="flex flex-col items-center justify-center gap-4"
+      (ngSubmit)="loginFormSubmit()"
+      #loginForm="ngForm"
+    >
+      <div class="flex flex-col w-full">
+        <label for="email" class="text-base">Email:</label>
+        <input
+          class="border border-gray-300 p-2 rounded-xl"
+          type="email"
+          name="email"
+          ngModel
+          placeholder="your email"
+          email
+          required
+          #login_email="ngModel"
+        />
+        <span *ngIf="!login_email.valid && login_email.touched" class="text-sm"
+          >Please give a valid email..</span
+        >
+      </div>
+
+      <div class="flex flex-col w-full">
+        <label for="password" class="text-base">Password:</label>
+        <input
+          class="border border-gray-300 p-2 rounded-xl"
+          type="password"
+          name="password"
+          ngModel
+          placeholder="password"
+          password
+          required
+        />
+      </div>
+      <div>
+        <button
+          class="p-2 pr-4 pl-4 border-2 rounded-xl bg-black text-white hover:bg-slate-800 focus:bg-slate-800 disabled:bg-slate-800 cursor-pointer"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          Login
+        </button>
+      </div>
+      <div>
+        <p class="text-sm">
+          Did not signed up?
+          <a class="underline cursor-pointer" (click)="switchMode()">SignUp</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

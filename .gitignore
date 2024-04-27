@@ -2,6 +2,7 @@
 .env
 docker-compose.yml
 redundant_codes_delete_b_final.txt
+todo_and_brief.txt
 # .env/
 # .venv/
 # __pycache__/

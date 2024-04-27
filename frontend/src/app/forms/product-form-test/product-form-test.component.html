@@ -1,0 +1,103 @@
+<p class="mt-8 mb-4 text-xl">product-form-test works!</p>
+
+<form
+  [formGroup]="productForm"
+  (ngSubmit)="onSubmit()"
+  class="max-w-lg mx-auto"
+  enctype="multipart/form-data"
+>
+  <div class="mb-4">
+    <label class="block mb-1">Name:</label>
+    <input
+      type="text"
+      name="name"
+      formControlName="name"
+      class="border rounded w-full py-2 px-3"
+    />
+  </div>
+  <div class="mb-4">
+    <label class="block mb-1">Detail:</label>
+    <textarea
+      name="detail"
+      formControlName="detail"
+      class="border rounded w-full py-2 px-3"
+    ></textarea>
+  </div>
+  <div class="mb-4">
+    <label class="block mb-1">Product Image:</label>
+    <input
+      type="file"
+      name="Product Image"
+      formControlName="upload_images"
+      (change)="onFileSelected($event)"
+      class="border rounded w-full py-2 px-3"
+      multiple
+    />
+  </div>
+  <div class="mb-4">
+    <label class="block mb-1">Category:</label>
+    <select
+      name="category"
+      formControlName="category"
+      multiple
+      class="border rounded w-full py-2 px-3"
+    >
+      <option *ngFor="let category of categories" [ngValue]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+  <div class="mb-4">
+    <label class="block mb-1">Price:</label>
+    <input
+      type="number"
+      name="price"
+      formControlName="price"
+      class="border rounded w-full py-2 px-3"
+    />
+  </div>
+  <div class="mb-4">
+    <label class="block mb-1">Discount:</label>
+    <input
+      type="number"
+      name="discount"
+      formControlName="discount"
+      class="border rounded w-full py-2 px-3"
+    />
+  </div>
+  <div formArrayName="variant" class="mb-4">
+    <h2 class="mb-2">Variant</h2>
+    <button
+      type="button"
+      (click)="addVariant()"
+      class="border rounded py-2 px-4 bg-blue-500 text-white"
+    >
+      + Add another variant
+    </button>
+    <div *ngFor="let vr of getVariantControls(); let i = index">
+      <input
+        type="text"
+        class="border rounder w-full py-2 px-3"
+        [formControlName]="i"
+      />
+    </div>
+
+    <!-- The repeated alias template -->
+    <!-- <div *ngFor="let alias of variant.controls; let i = index" class="mb-4">
+      <label [for]="'alias-' + i" class="block mb-1">Variant:</label>
+      <input
+        [id]="'alias-' + i"
+        type="number"
+        [formControlName]="i"
+        class="border rounded w-full py-2 px-3"
+      />
+    </div> -->
+  </div>
+
+  <button
+    type="submit"
+    class="border rounded py-2 px-4 bg-green-500 text-white"
+  >
+    Submit
+  </button>
+</form>

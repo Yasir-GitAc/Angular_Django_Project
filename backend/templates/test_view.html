@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF to Images</title>
+    <style>
+      #result-images {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+      }
+      #result-images img {
+        max-width: 45%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="pdfForm" enctype="multipart/form-data">
+      <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="result-images"></div>
+
+    <script>
+      document
+        .getElementById("pdfForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const formData = new FormData();
+          formData.append(
+            "pdfFile",
+            document.getElementById("pdfFile").files[0]
+          );
+
+          fetch("/process-pdf", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              displayImages(data.images);
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+
+      function displayImages(images) {
+        const resultImagesDiv = document.getElementById("result-images");
+        resultImagesDiv.innerHTML = ""; // Clear previous images
+
+        images.forEach((imageUrl) => {
+          const img = document.createElement("img");
+          img.src = imageUrl;
+          resultImagesDiv.appendChild(img);
+        });
+      }
+    </script>
+  </body>
+</html>
